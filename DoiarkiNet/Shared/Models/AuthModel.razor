@@ -1,0 +1,93 @@
+﻿<div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @*head*@
+            <div class="modal-header">
+                <h5 class="modal-title">Регистрация</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="() => Close()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @*body*@
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">ФИО</span>
+                    <input @bind="FirstName" type="text" aria-label="Фамилия" class="form-control">
+                    <input @bind="LastName" type="text" aria-label="Имя" class="form-control">
+                    <input @bind="SecondName" type="text" aria-label="Отчество" class="form-control">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Город</span>
+                    <input @bind="City" type="text" class="form-control" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <input @bind="Email" type="text" class="form-control" placeholder="E-mail" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <span class="input-group-text" id="basic-addon2">@MailExample</span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Пароль</span>
+                    <input @bind="Password" type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+
+                @*footer*@
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" style="background-color: #F1E18B; color: #63825C" @onclick="() => Add()">Зарегистрироваться</button>
+                    <button type="button" class="btn btn-primary" style="background-color: #F1E18B; color: #63825C" data-dismiss="modal" @onclick="() => Close()">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (ShowBackdrop)
+{
+    <div class="modal-backdrop fade show"></div>
+}
+
+@code {
+    public string MailExample = "@example.com";
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string SecondName { get; set; }
+    public string City { get; set; }
+    public string Email { get; set; }
+    public string Password { get; set; }
+
+
+    public Guid Guid = Guid.NewGuid();
+    public string ModalDisplay = "none;";
+    public string ModalClass = "";
+    public bool ShowBackdrop = false;
+
+    public void Open()
+    {
+        FirstName = String.Empty;
+        LastName = String.Empty;
+        SecondName = String.Empty;
+        City = String.Empty;
+        Email = String.Empty;
+        Password = String.Empty;
+
+        ModalDisplay = "block;";
+        ModalClass = "Show";
+        ShowBackdrop = true;
+        StateHasChanged();
+    }
+
+    public void Close()
+    {
+        ModalDisplay = "none";
+        ModalClass = "";
+        ShowBackdrop = false;
+        StateHasChanged();
+    }
+
+    public void Add()
+    {
+        ModalDisplay = "none";
+        ModalClass = "";
+        ShowBackdrop = false;
+        StateHasChanged();
+    }
+}

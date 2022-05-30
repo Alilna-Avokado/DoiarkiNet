@@ -1,0 +1,19 @@
+﻿.btnStyle {
+    background-color: #F1E18B;
+    color: #63825C;
+}
+
+    .btnStyle:hover,
+    .btnStyle:focus,
+    .btnStyle:visited {
+        background-color: #F1E18B;
+        color: #63825C;
+        border-block-color: #F1E18B;
+        border-inline-color: #F1E18B;
+        border-bottom-color: #F1E18B;
+        border-color: #F1E18B;
+    }
+
+    .btnStyle:active {
+        border: 3px solid #F1E18B;
+    }

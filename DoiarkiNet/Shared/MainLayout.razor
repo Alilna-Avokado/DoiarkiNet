@@ -1,0 +1,27 @@
+﻿@inherits LayoutComponentBase
+@using DoiarkiNet.Shared.Models
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <div class="main">
+        <div class="top-row px-4">
+            <button type="button" style="color: #63825C" class="btn btn-link" @onclick="() => EnterModel.Open()">Вход</button>
+            <button type="button" style="color: #63825C" class="btn btn-link" @onclick="() => AuthModel.Open()">Регистрация</button>
+        </div>
+
+        <div class="content px-4">
+            @Body
+        </div>
+    </div>
+</div>
+
+<AuthModel @ref="AuthModel"></AuthModel>
+<EnterModel @ref="EnterModel"></EnterModel>
+
+@code {
+    private AuthModel AuthModel = new AuthModel();
+    private EnterModel EnterModel = new EnterModel();
+}

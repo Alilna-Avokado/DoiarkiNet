@@ -1,0 +1,46 @@
+﻿<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" style="color: #38672d;" href="">Доярки.net</a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="generalPage" Match="NavLinkMatch.All">
+                <span class="oi iconify" data-icon="carbon:home" style="color: #38672d;" data-width="25"></span>
+                <span style="margin-left: 10px; color: #38672D">Главная</span>
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="aboutAs">
+                <span class="oi iconify" data-icon="bytesize:book" style="color: #38672d;" data-width="25"></span>
+                <span style="margin-left: 10px; color: #38672D" >О нас</span>
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="plantsPage">
+                <span class="oi iconify" data-icon="healthicons:plantation-worker-alt-outline" style="color: #38672d;" data-width="50"></span>
+                <span style="margin-left: 10px; color: #38672D">Сельхоз культуры</span>
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="animalPage">
+                <span class="oi iconify" data-icon="healthicons:animal-cow-outline" style="color: #38672d;" data-width="50"></span>
+                <span style="margin-left: 10px; color: #38672D">Скот</span>
+            </NavLink>
+        </li>
+    </ul>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

@@ -1,0 +1,59 @@
+﻿@page "/animalPage"
+@using DoiarkiNet.Shared.Models
+
+@inject DoiarkiDBContext DoiarkiDBContext
+
+<h3>Учет скота</h3>
+<button @onclick="() => _animalModal.Open()" type="button" class="btn btn-success"><span class="iconify" data-icon="mdi:pencil-plus" data-width="26"></span></button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Наименование</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var animal in DoiarkiDBContext.Animal)
+        {
+        <tr>
+            <th scope="row">1</th>
+            <td>@animal.Name</td>
+            <td>@animal.Count</td>
+            <td>@animal.Price$</td>
+            <td>
+                <button type="button" class="btn btn-primary"><span class="iconify" data-icon="mdi:circle-edit-outline"></span></button>
+                <button type="button" class="btn btn-danger"><span class="iconify" data-icon="mdi:delete-circle-outline"></span></button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<AnimalModal CheckBox="Checkbox" @ref="_animalModal"></AnimalModal>
+
+@code {
+    private bool _checkbox = false;
+
+    Action OnChangeCheckbox;
+
+    public bool Checkbox
+    {
+        get
+        {
+            return _checkbox;
+        }
+        set
+        {
+            _checkbox = value;
+            OnChangeCheckbox += StateHasChanged;
+        }
+    }
+
+    private int _counter = 0;
+
+    private AnimalModal _animalModal;
+}

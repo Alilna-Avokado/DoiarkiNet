@@ -1,0 +1,81 @@
+﻿<div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @*head*@
+            <div class="modal-header">
+                <h5 class="modal-title">Добавить</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="() => Close()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @*body*@
+        <div class="modal-body">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Животное</span>
+                <input @bind-value="_name" type="text" class="form-control" placeholder="Свинья" aria-label="Свинья" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Кол-во</span>
+                <input @bind-value="_count" type="text" class="form-control" placeholder="Свинья" aria-label="Свинья" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Цена</span>
+                <input @bind-value="_price" type="text" class="form-control" placeholder="Свинья" aria-label="Свинья" aria-describedby="basic-addon1">
+            </div>
+
+            @*footer*@
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" style="background-color: #F1E18B; color: #63825C" @onclick="() => Add()">Добавить</button>
+                <button type="button" class="btn btn-primary" style="background-color: #F1E18B; color: #63825C" data-dismiss="modal" @onclick="() => Close()">Закрыть</button>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+@if (ShowBackdrop)
+{
+    <div class="modal-backdrop fade show"></div>
+}
+
+@code {
+
+    [Parameter]
+    public List<Animal> AnimalCollection { get; set; }
+
+    [Parameter]
+    public bool CheckBox { get; set; }
+
+    private string _name;
+    private string _count;
+    private string _price;
+
+    public Guid Guid = Guid.NewGuid();
+    public string ModalDisplay = "none;";
+    public string ModalClass = "";
+    public bool ShowBackdrop = false;
+
+    public void Open()
+    {
+        ModalDisplay = "block;";
+        ModalClass = "Show";
+        ShowBackdrop = true;
+        StateHasChanged();
+    }
+
+    public void Close()
+    {
+        ModalDisplay = "none";
+        ModalClass = "";
+        ShowBackdrop = false;
+        StateHasChanged();
+    }
+
+    public void Add()
+    {
+        //AnimalCollection.Collection.Add(new Animal(_name, Convert.ToInt32(_count), Convert.ToInt32(_price)));
+        CheckBox = !CheckBox;
+        Close();
+    }
+}
