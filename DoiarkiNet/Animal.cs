@@ -21,7 +21,7 @@ namespace DoiarkiNet
 
         [BsonId]
         [DataMember]
-        public string ID { get; }
+        public string ID { get;  }
 
         [DataMember]
         public string Name { get; set; }
