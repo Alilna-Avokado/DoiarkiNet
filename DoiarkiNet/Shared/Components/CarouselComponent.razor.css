@@ -81,7 +81,7 @@ ol, li {
 
 .carousel {
   position: relative;
-  padding-top: 75%;
+  padding-top: 40%;
   filter: drop-shadow(0 0 10px);
   perspective: 100px;
 }
